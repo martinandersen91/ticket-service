@@ -1,0 +1,21 @@
+debug = true
+
+logLevel = "DEBUG"
+[accessLog]
+enable = false
+################################################################
+# Web configuration backend
+################################################################
+[web]
+address = ":8080"
+################################################################
+# Docker configuration backend
+################################################################
+[docker]
+domain = "docker.localhost"
+
+exposedbydefault = false
+
+[entryPoints]
+    [entryPoints.tickets]
+      address = ":8000"

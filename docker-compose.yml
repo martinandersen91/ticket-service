@@ -1,0 +1,62 @@
+version: '3.0'
+
+volumes:
+  maven:
+
+services:
+
+  traefik:
+    image: traefik:1.5
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/traefik.toml:/traefik.toml
+    ports:
+      - "8080:8080"
+      - "8000:8000"
+
+  postgres:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_PASSWORD=qwerty
+    volumes:
+      - ./postgres/lib/postgres/db-data:/var/lib/postgresql/data
+    ports:
+      - "8015:5432"
+
+
+  tickets-frontend:
+    build:
+      context: ./tickets-frontend
+      dockerfile: Dockerfile
+      args:
+        UID: ${UID}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=tickets-frontend"
+      - "traefik.port=9090"
+      - "traefik.frontend.entryPoints=tickets"
+      - "traefik.frontend.rule=PathPrefix:/"
+    volumes:
+      - ./tickets-frontend:/tickets-frontend
+
+
+  tickets-backend:
+    build:
+      context: ./tickets-backend
+      dockerfile: Dockerfile
+      args:
+        UID: ${UID}
+        USER: ${USER}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=tickets-backend"
+      - "traefik.port=8000"
+      - "traefik.frontend.entryPoints=tickets"
+      - "traefik.frontend.rule=PathPrefixStrip:/api"
+    volumes:
+      - ./tickets-backend/go/pkg:/go/pkg
+      - ./tickets-backend/go/src/tickets-backend:/go/src/tickets-backend
+
+
