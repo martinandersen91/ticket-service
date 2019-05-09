@@ -28,7 +28,7 @@ services:
 
   tickets-frontend:
     build:
-      context: ./tickets-frontend
+      context: ./tickets-frontend/angular-ticket
       dockerfile: Dockerfile
       args:
         UID: ${UID}
