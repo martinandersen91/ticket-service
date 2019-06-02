@@ -1,9 +1,9 @@
 <div class="ticketList">
   <div class="header">
     <i class="material-icons">access_time</i>
-    <span class="margins">Waiting</span>
+    <span class="margins">{{ statusType }}</span>
   </div>
-  <div *ngFor="let ticket of ticketList" class="ticketCard {{ statusType }}">
+  <div *ngFor="let ticket of ticketList" class="ticketCard {{ statusClass }}">
     <p class="ticketText title">{{ ticket.ticketId }}. {{ ticket.title }}</p>
     <p class="ticketText modified">(Last modified: {{ ticket.modifiedAtStr }})</p>
     <p class="ticketText author">(Author: {{ ticket.author }})</p>

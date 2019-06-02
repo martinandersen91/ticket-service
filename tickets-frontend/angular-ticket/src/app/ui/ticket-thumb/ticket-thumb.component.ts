@@ -9,7 +9,8 @@ import { Ticket } from '../tickets-list/ticket';
 export class TicketThumbComponent implements OnInit {
 
   @Input() ticketList: Ticket[];
-  @Input () statusType: string;
+  @Input() statusType: string;
+  @Input() statusClass: string; 
 
   constructor() { }
 
