@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { TicketMainViewComponent } from './ticket-main-view/ticket-main-view.component';
 import { CreateNewTicketComponent } from './ui/create-new-ticket/create-new-ticket.component';
 import { TicketsListComponent } from './ui/tickets-list/tickets-list.component';
+import { TicketThumbComponent } from './ui/ticket-thumb/ticket-thumb.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TicketMainViewComponent,
     CreateNewTicketComponent,
-    TicketsListComponent
+    TicketsListComponent,
+    TicketThumbComponent
   ],
   imports: [
     BrowserModule,

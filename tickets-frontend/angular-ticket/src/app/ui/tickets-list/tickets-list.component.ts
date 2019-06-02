@@ -15,7 +15,7 @@ export class TicketsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-      let i = 0;
+      let i = 70000;
       this.waitingList.push(new Ticket(Status.WAITING, i++));
       this.waitingList.push(new Ticket(Status.WAITING, i++));
       this.waitingList.push(new Ticket(Status.WAITING, i++));

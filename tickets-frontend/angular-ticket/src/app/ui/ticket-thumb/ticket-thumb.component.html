@@ -1,0 +1,16 @@
+<div class="ticketList">
+  <div class="header">
+    <i class="material-icons">access_time</i>
+    <span class="margins">Waiting</span>
+  </div>
+  <div *ngFor="let ticket of ticketList" class="ticketCard {{ statusType }}">
+    <p class="ticketText title">{{ ticket.ticketId }}. {{ ticket.title }}</p>
+    <p class="ticketText modified">(Last modified: {{ ticket.modifiedAtStr }})</p>
+    <p class="ticketText author">(Author: {{ ticket.author }})</p>
+    <input type="checkbox" class="read-more-state" id='post-{{ ticket.ticketId }}' />
+    <div class="read-more-wrap">
+      <p class="read-more-target ticketText">{{ ticket.content }}</p>
+    </div>
+    <label for="post-{{ ticket.ticketId }}" class="read-more-trigger"></label>
+  </div>
+</div>
