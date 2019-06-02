@@ -1,0 +1,50 @@
+<div class="ticketList">
+  <div class="header">
+    <i class="material-icons">access_time</i>
+    <span class="margins">Waiting</span>
+  </div>
+  <div *ngFor="let waiting of waitingList" class="ticketCard waitingTicket">
+    <p class="ticketText title">{{ waiting.ticketId }}. {{ waiting.title }}</p>
+    <p class="ticketText modified">(Last modified: {{ waiting.modifiedAtStr }})</p>
+    <p class="ticketText author">(Author: {{ waiting.author }})</p>
+    <input type="checkbox" class="read-more-state" id='post-{{ waiting.ticketId }}' />
+    <div class="read-more-wrap">
+      <p class="read-more-target ticketText">{{ waiting.content }}</p>
+    </div>
+    <label for="post-{{ waiting.ticketId }}" class="read-more-trigger"></label>
+  </div>
+</div>
+
+<div class="ticketList doing">
+  <div class="header">
+    <i class="material-icons">play_circle_outline</i>
+    <span class="margins">Doing</span>
+  </div>
+  <div *ngFor="let doing of doingList" class="ticketCard doingTicket">
+    <p class="ticketText title">{{ doing.ticketId }}. {{ doing.title }}</p>
+    <p class="ticketText modified">(Last modified: {{ doing.modifiedAtStr }})</p>
+    <p class="ticketText author">(Author: {{ doing.author }})</p>
+    <input type="checkbox" class="read-more-state" id='post-{{ doing.ticketId }}' />
+    <div class="read-more-wrap">
+      <p class="read-more-target ticketText">{{ doing.content }}</p>
+    </div>
+    <label for="post-{{ doing.ticketId }}" class="read-more-trigger"></label>
+  </div>
+</div>
+
+<div class="ticketList done">
+  <div class="header">
+    <i class="material-icons">check_circle_outline</i>
+    <span class="margins">Done</span>
+  </div>
+  <div *ngFor="let done of doneList" class="ticketCard doneTicket">
+    <p class="ticketText title">{{ done.ticketId }}. {{ done.title }}</p>
+    <p class="ticketText modified">(Last modified: {{ done.modifiedAtStr }})</p>
+    <p class="ticketText author">(Author: {{ done.author }})</p>
+    <input type="checkbox" class="read-more-state" id='post-{{ done.ticketId }}' />
+    <div class="read-more-wrap">
+      <p class="read-more-target ticketText">{{ done.content }}</p>
+    </div>
+    <label for="post-{{ done.ticketId }}" class="read-more-trigger"></label>
+  </div>
+</div>
