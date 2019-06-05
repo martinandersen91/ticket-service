@@ -36,18 +36,30 @@ func InsertTicket(ticketData *model.TicketData) (error) {
 
 	db := GetDB().Unsafe()
 
-	q := `
-		SELECT max(ticket_id) as id
+	count := `
+		SELECT count(*) as rows
 		FROM tickets;
 	`
-
-	id := 0
-	row := db.QueryRow(q);
-	err := row.Scan(&id)
+	rows := 0
+	err := db.QueryRow(count).Scan(&rows);
 	if err != nil {
 		log.Error(err)
 		return err
 	}
+
+	q := `
+		SELECT max(ticket_id) as id
+		FROM tickets;
+	`
+	id := 0
+	if rows != 0 {
+		err = db.QueryRow(q).Scan(&id);
+		if err != nil {
+			log.Error(err)
+			return err
+		}
+	}
+
 	sqlStatement := `
 		INSERT INTO tickets (ticket_id, title, content, status, author)
 		VALUES ($1, $2, $3, $4, $5)
