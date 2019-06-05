@@ -5,7 +5,7 @@
 }
 
 /* Input and textarea styling */
-input, textArea {
+input, textArea, select {
     padding-top: 1em;
     padding-bottom: 1em;
     padding-left: 0.5em;
@@ -14,6 +14,13 @@ input, textArea {
     border-radius: 5px;
     width: 100%;
     resize: none;
+    background-color: white;
+}
+
+/* Remove arrow and align with input fields */
+select {
+    appearance: none;
+    box-sizing: content-box;
 }
 
 /* Label should go on top of the input to act as a placeholder */
@@ -28,7 +35,7 @@ label {
 }
 
 /* As long as the text in the input/textarea is valid or has focus, the label should be placed on top with smaller font size */
-input:focus~label, input:valid~label, textArea:focus~label, textArea:valid~label {
+input:focus~label, input:valid~label, textArea:focus~label, textArea:valid~label, select:focus~label, select:valid~label {
     font-size: 9px;
     font-weight: bold;
     top: -5px;
@@ -57,6 +64,7 @@ input:focus~label, input:valid~label, textArea:focus~label, textArea:valid~label
 
 #innerTicketDiv {
     margin-right: 10px;
+    
 }
 
 #headerText {

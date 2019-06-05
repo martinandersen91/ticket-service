@@ -10,7 +10,8 @@ export class TicketThumbComponent implements OnInit {
 
   @Input() ticketList: Ticket[];
   @Input() statusType: string;
-  @Input() statusClass: string; 
+  @Input() statusClass: string;
+  @Input() icon: string;
 
   constructor() { }
 

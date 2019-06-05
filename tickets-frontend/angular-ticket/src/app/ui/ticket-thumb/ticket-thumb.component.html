@@ -1,6 +1,6 @@
 <div class="ticketList">
   <div class="header">
-    <i class="material-icons">access_time</i>
+    <i class="material-icons">{{ icon }}</i>
     <span class="margins">{{ statusType }}</span>
   </div>
   <div *ngFor="let ticket of ticketList" class="ticketCard {{ statusClass }}">

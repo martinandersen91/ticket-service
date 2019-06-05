@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ticket, Status } from './ticket';
+import { TicketService } from '../../api/ticket.service';
 
 @Component({
   selector: 'app-tickets-list',
@@ -12,31 +13,25 @@ export class TicketsListComponent implements OnInit {
   doingList: Ticket[] = [];
   doneList: Ticket[] = [];
 
-  constructor() { }
+  constructor(private ticketService: TicketService) { }
 
   ngOnInit() {
-      let i = 70000;
-      this.waitingList.push(new Ticket(Status.WAITING, i++));
-      this.waitingList.push(new Ticket(Status.WAITING, i++));
-      this.waitingList.push(new Ticket(Status.WAITING, i++));
-      this.waitingList.push(new Ticket(Status.WAITING, i++));
-      this.waitingList.push(new Ticket(Status.WAITING, i++));
-      this.waitingList.push(new Ticket(Status.WAITING, i++));
-      this.waitingList.push(new Ticket(Status.WAITING, i++));
-      this.waitingList.push(new Ticket(Status.WAITING, i++));
-      this.waitingList.push(new Ticket(Status.WAITING, i++));
+    this.ticketService.getTickets().subscribe(response => {
+      for (const ticket of response) {
+        this.addToLists(ticket);
+      }
+    });
+  }
 
-      this.doingList.push(new Ticket(Status.DOING, i++));
-      this.doingList.push(new Ticket(Status.DOING, i++));
-      this.doingList.push(new Ticket(Status.DOING, i++));
-      this.doingList.push(new Ticket(Status.DOING, i++));
-
-      this.doneList.push(new Ticket(Status.DONE, i++));
-      this.doneList.push(new Ticket(Status.DONE, i++));
-      this.doneList.push(new Ticket(Status.DONE, i++));
-      this.doneList.push(new Ticket(Status.DONE, i++));
-      this.doneList.push(new Ticket(Status.DONE, i++));
-      this.doneList.push(new Ticket(Status.DONE, i++));
-      this.doneList.push(new Ticket(Status.DONE, i++));
+  addToLists(ticket: Ticket) {
+    if (ticket.status === Status.WAITING) {
+      this.waitingList.push(ticket);
+    }
+    if (ticket.status === Status.DOING) {
+      this.doingList.push(ticket);
+    }
+    if (ticket.status === Status.DONE) {
+      this.doneList.push(ticket);
+    }
   }
 }

@@ -4,27 +4,30 @@
     <span id="headerText">Create new ticket</span>
   </div>
   <div id="innerTicketDiv">
-    <form>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="container">
-        <input id="title" type="text" required>
+        <input id="title" type="text" name="title" ngModel required>
         <label for="title">Title</label>
       </div>
 
       <div class="container">
-        <textarea rows="7" id="content" required></textarea>
+        <textarea rows="7" id="content" name="content" ngModel required></textarea>
         <label for="content">Content</label>
       </div>
 
       <div class="container">
-        <input type="text" id="status" required>
+        <select id="status" name="status" ngModel required>
+          <option></option>
+          <option *ngFor="let status of statuses">{{ status }}</option>
+        </select>
         <label for="status">Status</label>
       </div>
 
       <div class="container">
-        <input type="text" id="author" required>
+        <input type="text" id="author" name="author" ngModel required>
         <label for="author">Author</label>
       </div>
-      <button id="createButton">Create</button>
+      <button id="createButton" type="submit">Create</button>
     </form>
   </div>
 </span>
