@@ -20,7 +20,7 @@ func main() {
 	e.Use(middleware.Recover())
 
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"http://localhost:4200"},
+		AllowOrigins: []string{"http://localhost:4200", "http://localhost:4201"},
 		AllowMethods: []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete},
 	}))
 

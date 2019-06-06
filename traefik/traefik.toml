@@ -19,3 +19,5 @@ exposedbydefault = false
 [entryPoints]
     [entryPoints.tickets]
       address = ":8000"
+    [entryPoints.angular]
+      address = ":4200"

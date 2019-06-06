@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 4200
 
-RUN npm install && ng serve
+RUN npm install && ng serve --host 0.0.0.0

@@ -13,6 +13,7 @@ services:
     ports:
       - "8080:8080"
       - "8000:8000"
+      - "4200:4200"
 
   postgres:
     build:
@@ -34,12 +35,13 @@ services:
         UID: ${UID}
     labels:
       - "traefik.enable=true"
-      - "traefik.backend=tickets-frontend"
-      - "traefik.port=9090"
-      - "traefik.frontend.entryPoints=tickets"
+      - "traefik.backend=tickets-frontend/angular-ticket"
+      - "traefik.port=4200"
+      - "traefik.frontend.entryPoints=angular"
       - "traefik.frontend.rule=PathPrefix:/"
     volumes:
-      - ./tickets-frontend:/tickets-frontend
+      - ./tickets-frontend/angular-ticket/src:/src
+    tty: true
 
 
   tickets-backend:
